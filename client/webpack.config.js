@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// import workbox plugin
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 module.exports = {
     entry: "./src/js/index.js",
     output: {
@@ -12,7 +15,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './index.html',
             title: 'Webpack Plugin',
-        })
+        }),
+        // generate a new SW plugin
+        new WorkboxPlugin.GenerateSW()
     ],
     module: {
         rules: [
