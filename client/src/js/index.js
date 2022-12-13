@@ -13,6 +13,24 @@ import "../css/index.css";
 import { Tooltip, Toast, Popover} from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// variable reference to install button
+const installBtn = document.getElementById('installBtn');
+window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    installBtn.style.visibility = 'visible';
+
+    // event listener attached to install button variable
+    installBtn.addEventListener('click', () => {
+        event.prompt();
+        installBtn.setAttribute('disabled', true);
+        installBtn.textContent = 'Installed!';
+    });
+});
+
+// event listener that checks if the app has been installed
+window.addEventListener('appinstalled', (event) => {
+    console.log('appinstalled', event)
+});
 
 window.addEventListener('load', function() {
     initDb();
